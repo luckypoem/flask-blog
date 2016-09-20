@@ -15,7 +15,7 @@ python manage.py init_data
 python manage.py runserver
 ```
 启动本地服务。  
-输入[127.0.0.1:5000/woodenrobot/login](127.0.0.1:5000/woodenrobot/login)入登录页面。  
+输入127.0.0.1:5000/woodenrobot/login入登录页面。  
 默认账号和密码为：woodenrobo  123  
 登陆后可对文章进行新建、修改和删除。  
 项目演示：[https://woodenrobot.herokuapp.com/](https://woodenrobot.herokuapp.com/)
