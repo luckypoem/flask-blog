@@ -1,0 +1,70 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}woodenrobot{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg" type="image/x-icon">
+<link rel="icon" href="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg" type="iamge/x-icon">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+             data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">woodenrobot</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">主页</a></li>
+                <li><a href="{{ url_for('main.technology') }}">技术</a></li>
+                <li><a href="{{ url_for('main.favorite') }}">爱好</a> </li>
+                <li><a href="{{ url_for('main.nothing') }}">杂谈</a> </li>
+                <li><a href="{{ url_for('main.about') }}">关于</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.new_post') }}">新文章</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}
+    <aside class="logo">
+        <a href="about"><img src="http://7xraal.com1.z0.glb.clouddn.com/avatar100%20x%20100.jpg" class="gravatar" /></a>
+        <span class="logo-prompt">About the Author</span>
+        <div class="divider"></div>
+        <div class="center">
+            <h3>why so serious?</h3>
+        </div>
+    </aside>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{{ moment.lang('zh-cn') }}
+{% endblock %}
